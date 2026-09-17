@@ -9,7 +9,17 @@ mkdir -p "$BIN" "$ROOT"
 if command -v pkg >/dev/null 2>&1; then
   pkg update -y
   pkg install x11-repo -y || true
-  pkg install termux-x11-nightly xfce dbus proot-distro git curl wget nano vim python nodejs openssh htop unzip zip tar file procps iproute -y
+  packages=(termux-x11-nightly xfce4 dbus proot-distro git curl wget nano vim python nodejs openssh htop unzip zip tar file procps iproute2)
+  failed_packages=()
+  for package in "${packages[@]}"; do
+    if ! pkg install "$package" -y; then
+      failed_packages+=("$package")
+    fi
+  done
+  if [ "${#failed_packages[@]}" -gt 0 ]; then
+    printf 'Package Termux yang gagal dipasang: %s\n' "${failed_packages[*]}" >&2
+    exit 1
+  fi
 fi
 
 mkdir -p "$ROOT"/{assets,config,core,desktop,apps,input,logs,cache,backups,projects,tools,themes,state}
