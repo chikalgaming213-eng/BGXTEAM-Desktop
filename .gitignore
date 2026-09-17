@@ -1,0 +1,15 @@
+# Runtime/state generated on device
+logs/
+state/
+cache/
+backups/
+projects/
+tools/nethunter
+core/
+input/
+# User-specific Termux files
+*.log
+.env
+.env.*
+# Generated archive
+*.zip
