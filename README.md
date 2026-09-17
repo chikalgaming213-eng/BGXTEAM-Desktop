@@ -102,9 +102,9 @@ bgxtheme     # pilih tema
 ## Menggunakan Kali
 
 ```bash
-nethunter login
-nethunter status
-nethunter shell 'cat /etc/os-release'
+nethunter
+nethunter -r
+nethunter cat /etc/os-release
 nethunter update
 nethunter install <nama-paket>
 ```
@@ -139,7 +139,7 @@ bash apps/security/install-kali-tools.sh
 
 ```bash
 bgxhealth
-nethunter status
+nethunter
 ```
 
 Log utama berada di:

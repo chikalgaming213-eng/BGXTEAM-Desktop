@@ -235,7 +235,7 @@ Shodan adalah layanan pencarian informasi aset internet dan membutuhkan API key.
 Konfigurasi di dalam Kali:
 
 ```bash
-nethunter login
+nethunter
 shodan init API_KEY_ANDA
 shodan info
 exit
@@ -292,7 +292,7 @@ Periksa command:
 
 ```bash
 nethunter gvm --version
-nethunter login
+nethunter
 gvm-check-setup
 exit
 ```
@@ -347,13 +347,13 @@ bgxinfo
 Periksa status distro:
 
 ```bash
-nethunter status
+nethunter cat /etc/os-release
 ```
 
 Jika command tool berstatus `MISS`, masuk ke Kali lalu pasang paketnya:
 
 ```bash
-nethunter login
+nethunter
 apt-get update
 apt-get install <nama-paket>
 exit
