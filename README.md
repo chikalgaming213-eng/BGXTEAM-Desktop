@@ -4,7 +4,7 @@ Lingkungan desktop XFCE untuk Termux + Termux:X11 dengan Kali NetHunter minimal 
 
 ## Clone repository
 
-Repository ini bersifat private. Pastikan akun GitHub Anda memiliki akses, lalu jalankan di Termux:
+Repository ini bersifat public dan dapat di-clone langsung dari Termux:
 
 ```bash
 pkg update -y
@@ -16,22 +16,52 @@ cd BGXTEAM-Desktop
 
 Jika GitHub meminta autentikasi, gunakan GitHub CLI atau Personal Access Token. Jangan menaruh token di URL clone, file konfigurasi proyek, atau commit.
 
-## Instalasi
+## Instalasi: urutan wajib
 
-Jalankan dari Termux:
+> **Penting:** Kali NetHunter dipasang **setelah** `install.sh`, bukan sebelumnya. Jalankan empat tahap berikut secara berurutan dari Termux.
+
+### Tahap 1 — Pasang BGXTEAM dan dependency Termux
 
 ```bash
+cd "$HOME/BGXTEAM-Desktop"
 bash install.sh
 ```
 
-Installer memasang dependency Termux, termasuk Termux:X11, XFCE, DBus, `proot-distro`, Python, Node.js, OpenSSH, dan utilitas dasar. Setelah selesai, siapkan Kali NetHunter:
+Tahap ini memasang Termux:X11, XFCE, DBus, `proot-distro`, Python, Node.js, OpenSSH, dan utilitas dasar. Tahap ini **belum memasang Kali**.
+
+### Tahap 2 — Pasang Kali NetHunter minimal
 
 ```bash
 bash "$HOME/BGXTEAM/apps/security/install-nethunter.sh"
+```
+
+Tahap ini mengunduh dan memasang Kali Linux minimal melalui `proot-distro`. Nuclei juga dipasang langsung di filesystem Kali. Tahap ini biasanya hanya perlu dijalankan sekali.
+
+Periksa hasil instalasi Kali:
+
+```bash
+nethunter status
+nethunter login
+cat /etc/os-release
+exit
+```
+
+### Tahap 3 — Pasang tool keamanan tambahan di dalam Kali
+
+```bash
 bash "$HOME/BGXTEAM/apps/security/install-kali-tools.sh"
 ```
 
-Tool keamanan dipasang di filesystem Kali, bukan di Termux host. Jika suatu paket tidak tersedia pada repository Kali yang sedang digunakan, installer menampilkan status `[MISS]` tanpa menghentikan pemeriksaan paket lainnya.
+Tahap ini memasang Nmap, Metasploit, Wireshark/TShark, Hashcat, OpenSSH, SQLMap, Hydra, John, Shodan, SpiderFoot, ParamSpider, OpenVAS/GVM, Subfinder, Burp Suite, OWASP ZAP, dan Nikto **di dalam Kali**, bukan di Termux host.
+
+### Tahap 4 — Jalankan desktop BGXTEAM
+
+```bash
+bgxstart
+bgx
+```
+
+Jika suatu paket tidak tersedia pada repository Kali, installer menampilkan status `[MISS]` tanpa menghentikan pemeriksaan paket lainnya.
 
 ## Menjalankan desktop
 
