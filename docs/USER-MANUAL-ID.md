@@ -1,12 +1,12 @@
 # BGXTEAM Desktop — User Manual Tool Keamanan
 
 **Versi:** 1.0  
-**Lingkungan:** Termux + Termux:X11 + XFCE + Kali NetHunter melalui `proot-distro`  
+**Lingkungan:** Termux + Termux:X11 + XFCE + Kali NetHunter Rootless  
 **Bahasa:** Indonesia
 
 ## 1. Tujuan dan batas penggunaan
 
-BGXTEAM menyediakan launcher dan wrapper untuk menjalankan tool keamanan dari dalam Kali NetHunter. Semua tool dijalankan di lingkungan Kali, bukan langsung dari Termux host, kecuali command pengelola `proot-distro` dan wrapper `nethunter`.
+BGXTEAM menyediakan launcher dan wrapper untuk menjalankan tool keamanan dari dalam Kali NetHunter Rootless. Semua tool dijalankan di lingkungan Kali, bukan langsung dari Termux host, melalui launcher resmi `nethunter`.
 
 Gunakan tool hanya pada perangkat, akun, domain, aplikasi, jaringan, dan data yang Anda miliki atau yang secara jelas Anda diizinkan untuk uji. Pemindaian, enumerasi, pengujian kredensial, pengujian injeksi, dan pengujian eksploitasi dapat menimbulkan gangguan layanan atau konsekuensi hukum jika dilakukan tanpa izin.
 
@@ -24,7 +24,7 @@ Termux host
     ├── state/                   # status instalasi dan tema
     └── assets/bgxteam.png       # wallpaper desktop
 
-Kali NetHunter melalui proot-distro
+Kali NetHunter Rootless melalui installer resmi Termux
 ├── Nuclei
 ├── Nmap
 ├── Metasploit Framework
@@ -52,11 +52,13 @@ Jalankan perintah berikut di Termux dari direktori proyek hasil ekstraksi.
 bash install.sh
 ```
 
-Installer memasang dependency desktop dan `proot-distro`. Setelah itu, pasang Kali minimal dan Nuclei:
+Installer memasang dependency desktop dan `proot-distro`. Setelah itu, pasang Kali NetHunter Rootless dan Nuclei. Saat installer meminta pilihan image, pilih ARM64 minimal untuk perangkat ARM64 atau ARMhf minimal untuk perangkat 32-bit:
 
 ```bash
 bash ~/BGXTEAM/apps/security/install-nethunter.sh
 ```
+
+Installer NetHunter yang digunakan adalah `https://offs.ec/2MceZWr`. Setelah selesai, perintah resmi yang tersedia adalah `nethunter`, `nethunter -r`, dan `nethunter kex start`.
 
 Terakhir, pasang tool keamanan lainnya:
 
@@ -85,15 +87,15 @@ bash ~/BGXTEAM/apps/security/install-kali-tools.sh
 | `bgxinfo` | Menampilkan informasi sistem, storage, memory, dan proses. |
 | `bgxkeyboard` | Mengatur additional keyboard Termux:X11. |
 | `bgxtheme` | Mengganti tema BGXTEAM. |
-| `nethunter login` | Masuk ke shell Kali interaktif. |
-| `nethunter shell <command>` | Menjalankan command shell di Kali. |
-| `nethunter status` | Menampilkan distro proot yang terpasang. |
-| `nethunter install <package>` | Memasang paket tambahan melalui APT di Kali. |
+| `nethunter` | Masuk ke shell Kali sebagai user NetHunter. |
+| `nethunter -r` | Masuk ke shell Kali sebagai root. |
+| `nethunter kex start` | Menjalankan desktop KeX NetHunter. |
+| `nethunter -r apt-get install <package>` | Memasang paket tambahan melalui APT di Kali. |
 
 Contoh login:
 
 ```bash
-nethunter login
+nethunter
 cat /etc/os-release
 exit
 ```
@@ -165,7 +167,7 @@ nethunter tshark -r capture.pcap
 nethunter tshark -r capture.pcap -Y 'http' -T fields -e ip.src -e ip.dst
 ```
 
-Pada `proot-distro`, live capture dari interface Android dapat terbatas oleh permission dan kernel. Analisis file `.pcap` biasanya lebih dapat diandalkan daripada capture langsung.
+Pada NetHunter Rootless, live capture dari interface Android dapat terbatas oleh permission dan kernel. Analisis file `.pcap` biasanya lebih dapat diandalkan daripada capture langsung.
 
 ## 10. Hashcat
 
@@ -177,7 +179,7 @@ nethunter hashcat --help
 nethunter hashcat -m 0 -a 0 hashes.txt wordlist.txt
 ```
 
-Pastikan format mode `-m`, attack mode `-a`, dan wordlist sesuai dengan data uji. Dukungan GPU Android dapat terbatas atau tidak tersedia di dalam `proot-distro`.
+Pastikan format mode `-m`, attack mode `-a`, dan wordlist sesuai dengan data uji. Dukungan GPU Android dapat terbatas atau tidak tersedia di dalam NetHunter Rootless.
 
 ## 11. OpenSSH
 

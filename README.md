@@ -1,6 +1,6 @@
 # BGXTEAM Desktop
 
-Lingkungan desktop XFCE untuk Termux + Termux:X11 dengan Kali NetHunter minimal melalui `proot-distro`. Proyek ini menyediakan launcher desktop, wallpaper BGXTEAM, wrapper `nethunter`, Security Center, dan instalasi tool keamanan di dalam Kali.
+Lingkungan desktop XFCE untuk Termux + Termux:X11 dengan Kali NetHunter Rootless. Proyek ini menyediakan launcher desktop, wallpaper BGXTEAM, wrapper `nethunter`, Security Center, dan instalasi tool keamanan di dalam Kali.
 
 ## Clone repository
 
@@ -27,7 +27,7 @@ cd "$HOME/BGXTEAM-Desktop"
 bash install.sh
 ```
 
-Tahap ini memasang Termux:X11, XFCE, DBus, `proot-distro`, Python, Node.js, OpenSSH, dan utilitas dasar. Tahap ini **belum memasang Kali**.
+Tahap ini memasang Termux:X11, XFCE, DBus, `proot-distro`, Python, Node.js, OpenSSH, dan utilitas dasar. Tahap ini **belum memasang Kali NetHunter**.
 
 ### Tahap 2 — Pasang Kali NetHunter minimal
 
@@ -35,13 +35,26 @@ Tahap ini memasang Termux:X11, XFCE, DBus, `proot-distro`, Python, Node.js, Open
 bash "$HOME/BGXTEAM/apps/security/install-nethunter.sh"
 ```
 
-Tahap ini mengunduh dan memasang Kali Linux minimal melalui `proot-distro`. Nuclei juga dipasang langsung di filesystem Kali. Tahap ini biasanya hanya perlu dijalankan sekali.
+Tahap ini memasang Kali NetHunter Rootless menggunakan installer resmi yang Anda berikan. Saat installer menampilkan pilihan image, pilih **ARM64 minimal** untuk perangkat ARM64 atau **ARMhf minimal** untuk perangkat 32-bit. Nuclei kemudian dipasang langsung di filesystem NetHunter. Tahap ini biasanya hanya perlu dijalankan sekali.
+
+Installer resmi yang digunakan:
+
+```text
+https://offs.ec/2MceZWr
+```
 
 Periksa hasil instalasi Kali:
 
 ```bash
-nethunter status
-nethunter login
+nethunter
+cat /etc/os-release
+exit
+```
+
+Untuk shell root NetHunter gunakan:
+
+```bash
+nethunter -r
 cat /etc/os-release
 exit
 ```
