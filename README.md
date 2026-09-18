@@ -67,25 +67,73 @@ bash "$HOME/BGXTEAM/apps/security/install-kali-tools.sh" --install
 
 Tahap ini memasang Nmap, Metasploit, Wireshark/TShark, Hashcat, OpenSSH, SQLMap, Hydra, John, Shodan, SpiderFoot, ParamSpider, OpenVAS/GVM, Subfinder, Burp Suite, OWASP ZAP, dan Nikto **di dalam Kali**, bukan di Termux host.
 
-### Tahap 4 — Jalankan desktop BGXTEAM
+### Tahap 4 — Masuk ke desktop BGXTEAM
+
+Desktop BGXTEAM menggunakan **Termux:X11 + XFCE**. Pastikan aplikasi Termux:X11 sudah terpasang di Android.
+
+1. Buka aplikasi **Termux:X11** dari menu aplikasi Android. Biarkan aplikasi tersebut terbuka.
+2. Kembali ke Termux.
+3. Jalankan desktop:
 
 ```bash
+cd "$HOME/BGXTEAM-Desktop"
 bgxstart
+```
+
+4. Setelah sesi XFCE aktif, tampilan desktop BGXTEAM akan muncul di aplikasi Termux:X11.
+5. Buka launcher BGXTEAM dari terminal lain atau dari terminal yang sama setelah command selesai:
+
+```bash
 bgx
+```
+
+Jika command `bgxstart` belum ditemukan, gunakan path script langsung:
+
+```bash
+bash "$HOME/BGXTEAM/scripts/start.sh"
+```
+
+Untuk keluar dari desktop:
+
+```bash
+bgxstop
+```
+
+NetHunter KeX adalah opsi terpisah dari desktop BGXTEAM. Jika ingin memakai desktop bawaan NetHunter, jalankan:
+
+```bash
+nethunter kex passwd
+nethunter kex start
+```
+
+Hentikan KeX dengan:
+
+```bash
+nethunter kex stop
 ```
 
 Jika suatu paket tidak tersedia pada repository Kali, installer menampilkan status `[MISS]` tanpa menghentikan pemeriksaan paket lainnya.
 
-## Menjalankan desktop
+## Troubleshooting desktop
 
-```bash
-bgxstart
-```
-
-Jika layar hitam:
+Jika desktop tidak muncul atau layar hitam:
 
 ```bash
 BGX_LEGACY_DRAWING=true bgxstart
+```
+
+Jika masih gagal, jalankan pemeriksaan:
+
+```bash
+bgxhealth
+bgxinfo
+```
+
+Pastikan dependency desktop sudah terpasang dengan mengulangi:
+
+```bash
+cd "$HOME/BGXTEAM-Desktop"
+bash install.sh
 ```
 
 Perintah utama:
