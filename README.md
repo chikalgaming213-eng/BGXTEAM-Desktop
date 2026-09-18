@@ -105,8 +105,8 @@ bgxtheme     # pilih tema
 nethunter
 nethunter -r
 nethunter cat /etc/os-release
-nethunter update
-nethunter install <nama-paket>
+nethunter -r apt-get update
+nethunter -r apt-get install <nama-paket>
 ```
 
 Contoh wrapper tool:
@@ -132,7 +132,7 @@ cd "$HOME/BGXTEAM-Desktop"
 git pull --ff-only
 bash install.sh
 bash apps/security/install-nethunter.sh
-bash apps/security/install-kali-tools.sh
+bash apps/security/install-kali-tools.sh --update
 ```
 
 ## Troubleshooting
@@ -150,4 +150,4 @@ $HOME/BGXTEAM/logs/xfce.log
 $HOME/BGXTEAM/logs/x11.log
 ```
 
-Jika repository Kali bermasalah, jalankan `nethunter update` lalu ulangi installer tool. Detail batasan GUI, GPU, packet capture, OpenVAS/GVM, Burp Suite, dan OWASP ZAP dibahas di user manual.
+Jika repository Kali bermasalah, jalankan `nethunter -r apt-get update` lalu ulangi installer tool dengan mode `--install`. Detail batasan GUI, GPU, packet capture, OpenVAS/GVM, Burp Suite, dan OWASP ZAP dibahas di user manual.

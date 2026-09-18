@@ -2,8 +2,6 @@
 set -euo pipefail
 ROOT="${BGX_ROOT:-$HOME/BGXTEAM}"
 
-command -v nethunter >/dev/null 2>&1 || { echo '[FAIL] NetHunter belum terpasang. Jalankan install-nethunter.sh terlebih dahulu.' >&2; exit 1; }
-
 MODE="${1:-menu}"
 case "$MODE" in
   --help|-h)
@@ -28,6 +26,8 @@ EOF
     ;;
   *) echo "Mode tidak dikenal: $MODE. Gunakan --help." >&2; exit 2;;
 esac
+
+command -v nethunter >/dev/null 2>&1 || { echo '[FAIL] NetHunter belum terpasang. Jalankan install-nethunter.sh terlebih dahulu.' >&2; exit 1; }
 
 REMOTE_SCRIPT=''
 read -r -d '' REMOTE_SCRIPT <<'KALI_SCRIPT' || true
