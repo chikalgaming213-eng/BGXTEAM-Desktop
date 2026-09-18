@@ -62,7 +62,7 @@ exit
 ### Tahap 3 — Pasang tool keamanan tambahan di dalam Kali
 
 ```bash
-bash "$HOME/BGXTEAM/apps/security/install-kali-tools.sh"
+bash "$HOME/BGXTEAM/apps/security/install-kali-tools.sh" --install
 ```
 
 Tahap ini memasang Nmap, Metasploit, Wireshark/TShark, Hashcat, OpenSSH, SQLMap, Hydra, John, Shodan, SpiderFoot, ParamSpider, OpenVAS/GVM, Subfinder, Burp Suite, OWASP ZAP, dan Nikto **di dalam Kali**, bukan di Termux host.

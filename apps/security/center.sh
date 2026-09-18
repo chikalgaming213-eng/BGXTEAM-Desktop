@@ -8,10 +8,10 @@ while true; do
   read -r -p 'Security > ' choice
   case "$choice" in
     1) "$SCRIPT_DIR/install-nethunter.sh"; read -r -p 'Enter...' _;;
-    2) "$SCRIPT_DIR/install-kali-tools.sh"; read -r -p 'Enter...' _;;
-    3) "$ROOT/tools/nethunter" update; read -r -p 'Enter...' _;;
+    2) "$SCRIPT_DIR/install-kali-tools.sh" --install; read -r -p 'Enter...' _;;
+    3) "$ROOT/tools/nethunter" -r apt-get update; read -r -p 'Enter...' _;;
     4) printf 'NetHunter Rootless: '; command -v nethunter >/dev/null 2>&1 && echo OK || echo MISSING; "$ROOT/tools/nethunter" nuclei -version 2>&1 || true; "$ROOT/tools/nethunter" nmap --version 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" msfconsole --version 2>&1 || true; "$ROOT/tools/nethunter" tshark --version 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" hashcat --version 2>&1 || true; "$ROOT/tools/nethunter" ssh -V 2>&1 || true; "$ROOT/tools/nethunter" sqlmap --version 2>&1 || true; "$ROOT/tools/nethunter" hydra -h 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" john --version 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" shodan version 2>&1 || true; "$ROOT/tools/nethunter" spiderfoot --help 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" subfinder -version 2>&1 || true; "$ROOT/tools/nethunter" gvm --version 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" zaproxy --version 2>&1 | head -n 1 || true; "$ROOT/tools/nethunter" nikto -Version 2>&1 | head -n 1 || true; read -r -p 'Enter...' _;;
-    5) "$ROOT/tools/nethunter" login;;
+    5) "$ROOT/tools/nethunter";;
     6) echo 'Hanya gunakan pada target yang Anda miliki atau berizin.'; read -r -p 'URL atau file target: ' target; if [ -n "$target" ]; then if [[ "$target" == http://* || "$target" == https://* ]]; then "$ROOT/tools/nethunter" nuclei -u "$target"; elif [ -f "$target" ]; then "$ROOT/tools/nethunter" nuclei -l "$target"; else echo 'Target file tidak ditemukan.'; fi; fi; read -r -p 'Enter...' _;;
     7) echo 'Hanya gunakan pada target yang Anda miliki atau berizin.'; read -r -p 'Target Nmap: ' target; [ -n "$target" ] && "$ROOT/tools/nethunter" nmap "$target"; read -r -p 'Enter...' _;;
     8) "$ROOT/tools/nethunter" msfconsole;;

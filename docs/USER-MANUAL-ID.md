@@ -63,7 +63,7 @@ Installer NetHunter yang digunakan adalah `https://offs.ec/2MceZWr`. Setelah sel
 Terakhir, pasang tool keamanan lainnya:
 
 ```bash
-bash ~/BGXTEAM/apps/security/install-kali-tools.sh
+bash ~/BGXTEAM/apps/security/install-kali-tools.sh --install
 ```
 
 Installer tool memeriksa paket satu per satu. Output `[OK]` berarti command ditemukan di Kali. Output `[MISS]` berarti paket belum tersedia pada repository Kali yang sedang digunakan atau nama paket perlu dipasang manual.
@@ -71,8 +71,8 @@ Installer tool memeriksa paket satu per satu. Output `[OK]` berarti command dite
 Untuk memperbarui paket di kemudian hari:
 
 ```bash
-nethunter update
-bash ~/BGXTEAM/apps/security/install-kali-tools.sh
+nethunter -r apt-get update
+bash ~/BGXTEAM/apps/security/install-kali-tools.sh --update
 ```
 
 ## 4. Perintah dasar BGXTEAM
@@ -383,8 +383,8 @@ Log utama berada di:
 Jika installer terhenti karena repository, ulangi setelah memperbarui repository Kali:
 
 ```bash
-nethunter update
-bash ~/BGXTEAM/apps/security/install-kali-tools.sh
+nethunter -r apt-get update
+bash ~/BGXTEAM/apps/security/install-kali-tools.sh --install
 ```
 
 ## 24. Praktik penyimpanan hasil
