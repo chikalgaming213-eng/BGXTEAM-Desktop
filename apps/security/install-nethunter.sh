@@ -31,7 +31,7 @@ chmod +x "$ROOT/tools/nethunter"
 
 # Pasang Nuclei di filesystem NetHunter menggunakan launcher resmi.
 echo 'Memasang Nuclei di dalam Kali NetHunter...'
-nethunter -r bash -lc '
+nethunter -r '
   set -e
   export DEBIAN_FRONTEND=noninteractive
   apt-get update
